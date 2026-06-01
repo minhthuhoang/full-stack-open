@@ -3,15 +3,9 @@ sequenceDiagram
     participant browser
     participant server
 
-    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
-    activate server 
-    server-->>browser: URL redirect to /notes
-    deactivate server
-    Note right of browser: Data is sent as the body of the POST request<br>The server creates a new note object and adds it to the notes array
-
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
     activate server
-    server-->>browser: HTML file
+    server-->>browser: HTML document
     deactivate server
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
