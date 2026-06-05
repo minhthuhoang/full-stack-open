@@ -1,9 +1,35 @@
-const App = () => {
-  const friends = ['Peter','Maya']
+const Header = (props) => {
+  return (
+    <h1>{props.course}</h1>
+  )
+}
 
+const Content = ({part}) => {
+  return (
+    <p>
+      {part.part} {part.exercises}
+    </p>
+  )
+} 
+
+const Total = (props) => {
+  return (
+    <p>Number of exercises {props.total}</p>
+  )
+}
+
+const App = () => {
+  const course = "Half Stack application development"
+  const part1 = {part: "Fundamentals of React", exercises: 10}
+  const part2 = {part: "Using props to pass data", exercises: 7}
+  const part3 = {part: "State of a component", exercises: 14}
   return (
     <div>
-      <p>{friends}</p>
+      <Header course = {course} />
+      <Content part = {part1}  />
+      <Content part = {part2} />
+      <Content part = {part3} />
+      <Total total = {part1.exercises + part2.exercises + part3.exercises} />
     </div>
   )
 }
