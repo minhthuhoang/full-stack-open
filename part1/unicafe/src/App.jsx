@@ -1,40 +1,55 @@
 import { useState } from 'react'
 
-const Display = ({counter}) => <div>{counter}</div>
+const Header = (props) => <div><h1>{props.text}</h1></div>
 
-const Button = ({onClick, text}) => <button onClick={onClick}>{text}</button>
+const Button = (props) => (
+    <button onClick={props.onClick}>
+      {props.text}
+    </button>
+  )
+
+const Summary = (props) => (
+  <div>
+    <div>good {props.good}</div>
+    <div>neutral {props.neutral}</div>
+    <div>bad {props.bad}</div>
+  </div>
+)
 
 const App = () => {
-  const [counter, setCounter] = useState(0)
+  // save clicks of each button to its own state
+  const [good, setGood] = useState(0)
+  const [neutral, setNeutral] = useState(0)
+  const [bad, setBad] = useState(0)
 
-  console.log('rendering with counter value', counter)
+  const handleGood = () => {
+    const updatedGood = good + 1
+    setGood(updatedGood)
+    console.log("the number of good reviews is", updatedGood)
+  } 
 
-  const increaseByOne = () => {
-
-    console.log('increasing, value before', counter)
-    setCounter(counter + 1)
+  const handleBad = () => {
+    const updatedBad = bad + 1
+    setBad(updatedBad)
+    console.log("the number of bad reviews is", updatedBad)
   }
 
-  const decreaseByOne = () => { 
-
-    console.log('decreasing, value before', counter)
-    setCounter(counter - 1)
-  }
-
-  const setToZero = () => {
-
-    console.log('resetting to zero, value before', counter)
-    setCounter(0)
-  }
+  const handleNeutral = () => {
+    const updatedNeutral = neutral + 1
+    setNeutral(updatedNeutral)
+    console.log("the number of neutral reviews is", updatedNeutral)
+  }  
 
   return (
     <div>
-      <Display counter={counter} />
-      <Button onClick={increaseByOne} text="plus" />
-      <Button onClick={setToZero} text="zero" />
-      <Button onClick={decreaseByOne} text="minus" />
+      <Header text="give feedback"/>
+      <Button onClick={handleGood} text="good"/>
+      <Button onClick={handleNeutral} text="neutral"/>
+      <Button onClick={handleBad} text="bad"/>
+      <Header text="statistics"/>
+      <Summary good={good} bad={bad} neutral={neutral}/>
     </div>
   )
-} 
+}
 
 export default App
