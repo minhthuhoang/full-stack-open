@@ -8,6 +8,12 @@ const Button = (props) => (
     </button>
   )
 
+const StatisticLine = (props) => (
+  <div>
+    {props.text} {props.value}
+  </div>
+)
+
 const Statistics = (props) => {
   const all = props.good + props.bad + props.neutral
 
@@ -21,12 +27,12 @@ const Statistics = (props) => {
 
   return (
     <div>
-      <div>good {props.good}</div>
-      <div>neutral {props.neutral}</div>
-      <div>bad {props.bad}</div>
-      <div>all {all}</div>
-      <div>average {average}</div>
-      <div>positive {positive} %</div>
+      <StatisticLine text="good" value={props.good} />
+      <StatisticLine text="neutral" value={props.neutral} />
+      <StatisticLine text="bad" value={props.bad} />
+      <StatisticLine text="all" value={all} />
+      <StatisticLine text="average" value={average} />
+      <StatisticLine text="positive" value={positive + ' %'} />
     </div>
   )
 }
@@ -53,8 +59,8 @@ const App = () => {
     const updatedNeutral = neutral + 1
     setNeutral(updatedNeutral)
     console.log("the number of neutral reviews is", updatedNeutral)
-  }  
-1
+  }
+
   return (
     <div>
       <Header text="give feedback"/>
