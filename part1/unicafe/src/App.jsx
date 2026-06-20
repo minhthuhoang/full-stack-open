@@ -54,7 +54,7 @@ const App = () => {
     setNeutral(updatedNeutral)
     console.log("the number of neutral reviews is", updatedNeutral)
   }  
-
+1
   return (
     <div>
       <Header text="give feedback"/>
